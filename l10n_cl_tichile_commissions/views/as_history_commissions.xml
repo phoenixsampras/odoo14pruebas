@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="as_historico_comsiones_action_window">
+            <field name="name">Historico de Comisiones</field>
+            <field name="res_model">as.history.commissions</field>
+            <field name="view_mode">tree,kanban,form</field>
+
+        </record>
+
+        <record id="as_history_comisiones_tree_view" model="ir.ui.view">
+            <field name="name">as.history.commissions.tree</field>
+            <field name="model">as.history.commissions</field>
+
+            <field name="arch" type="xml">
+                <tree string="History Promo">
+                 <field name="fecha_venta"  />
+                            <field name="as_pricelist_id"  />
+                            <field name="sale_id"  />
+                            <field name="vendor_id"  />
+                            <field name="product_id"  />
+                            <field name="partner_id"  />
+                            <field name="margin_puntos" />
+                            <field name="invoice_ids"  widget="many2many_tags" />
+                            <field name="aty_invoice" />
+                            <field name="amount_payment" />
+                            <!-- <field name="fecha_factura" /> -->
+                            <field name="state_sale"  />
+                            <field name="as_type_modality"  />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="history_comisiones_form_view">
+            <field name="name">ias.history.commissions Form</field>
+            <field name="model">as.history.commissions</field>
+            <field name="arch" type="xml">
+                <form string="Historico de Comisiones">
+                    <sheet>
+                        <group>
+                            <field name="fecha_venta"  />
+                            <field name="as_pricelist_id"  />
+                            <field name="sale_id"  />
+                            <field name="vendor_id"  />
+                            <field name="product_id"  />
+                            <field name="partner_id"  />
+                            <field name="margin_puntos" />
+                            <field name="invoice_ids"  widget="many2many_tags" />
+                            <field name="aty_invoice" />
+                            <!-- <field name="fecha_factura" /> -->
+                            <field name="state_sale"  />
+                            <field name="as_type_modality"  />
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <menuitem name="Historico de Comisiones" id="menu_history_comisiones_promo"
+            action="as_historico_comsiones_action_window" parent="sale.product_menu_catalog" />
+    </data>
+
+</odoo>

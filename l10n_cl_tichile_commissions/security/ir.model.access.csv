@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_as_tabla_comisiones,Tabla de comisiones,model_as_tabla_comisiones,stock.group_stock_manager,1,1,1,1
+access_as_history_commissions,Historico de Comisiones,model_as_history_commissions,stock.group_stock_manager,1,1,1,1
+access_as_comisiones,reporte comisiones,model_as_comisiones,stock.group_stock_manager,1,1,1,1

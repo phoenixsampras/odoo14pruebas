@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="as_sale_field_setting_view" model="ir.ui.view">
+            <field name="name">as.res.sale.user.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='sale_config_online_confirmation_pay']" position="after">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="as_type_comissions" /><br/>
+                            <field name="group_comissions_porcentaje" invisible="1" />
+                            <field name="group_comissions_monto" invisible="1" />
+                            <field name="as_type_comissions" widget="radio" class="o_light_label" /><br/>
+                             <button name="%(l10n_cl_tichile_commissions.as_tabla_comsiones_action_window)d" icon="fa-arrow-right" type="action" string="Tabla de comisiones"
+                                      attrs="{'invisible': [('as_type_comissions', '!=', 'Monto Fijo')]}" class="btn-link"/><br/>
+                            <div class="text-muted">
+                                Permite seleccionar el tipo de comisiones que se va a aplicar
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="as_type_modality" /><br/>
+                            <field name="group_comissions_clientes" invisible="1" />
+                            <field name="group_comissions_productos" invisible="1" />
+                            <field name="as_type_modality" widget="radio" class="o_light_label" /><br/>
+                            
+                            <div class="text-muted">
+                                Permite seleccionar la modalidad de comisiones
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

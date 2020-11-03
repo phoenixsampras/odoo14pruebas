@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- Sale Order form view -->
+	<record id="view_order_form_inherit_commissions" model="ir.ui.view">
+		<field name="name">view.order.form.inherit.view</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='partner_id']" position="after">
+				<field name="as_comissions" groups="l10n_cl_tichile_commissions.group_comissions_clientes" />
+			</xpath>
+            <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='discount']" position="after">
+                    <field name="as_discount_amount" attrs="{'readonly': [('as_type','=', True)]}" force_save="1" />
+                    <field name="as_total_porcentaje" readonly="True" force_save="1" />
+                    <field name="as_total_puntos" force_save="1" />
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='discount']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('as_type','=', False)]}</attribute>
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='discount']" position="before">
+                    <field name="as_type" />
+                    <field name="as_permitido" invisible="True" />
+                    <field name="as_costo" invisible="True" />
+                    <field name="as_total_price" invisible="True" />
+                    <field name="as_total_costo" invisible="True" />
+                </xpath>
+                <xpath expr="//form/sheet/notebook/page/field/tree" position="attributes">
+                    <attribute name="decoration-danger">as_permitido == False</attribute>
+                </xpath>
+		</field>
+	</record>
+
+</odoo>

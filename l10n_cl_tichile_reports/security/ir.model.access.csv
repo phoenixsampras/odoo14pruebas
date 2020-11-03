@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_as_ventas_productos,as_ventas_productos,model_as_ventas_productos,base.group_user,1,1,1,1
+access_as_cuentas_pagar,as_cuentas_pagar,model_as_cuentas_pagar,base.group_user,1,1,1,1
+access_as_cuentas_cobro,as_cuentas_cobro,model_as_cuentas_cobro,base.group_user,1,1,1,1
+access_as_ventas_clientes_productos,as_ventas_clientes_productos,model_as_ventas_clientes_productos,base.group_user,1,1,1,1
+access_as_resumen_ventas,as_resumen_ventas,model_as_resumen_ventas,base.group_user,1,1,1,1
+access_as_ventas_vendedor,as_ventas_vendedor,model_as_ventas_vendedor,base.group_user,1,1,1,1
+access_as_kardex_productos_wiz,as_kardex_productos_wiz,model_as_kardex_productos_wiz,base.group_user,1,1,1,1
+access_as_ventas_sucursal_dia,as_ventas_sucursal_dia,model_as_ventas_sucursal_dia,base.group_user,1,1,1,1

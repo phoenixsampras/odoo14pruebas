@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="as_pdf_resumen_por_ventas">
+        <t t-call="web.html_container">
+
+            <div class="header">
+                <style type="text/css">
+                    .header {
+                        margin: 0px;
+                        padding: 0px;
+                        font-size: 12px;
+                        font-family: 'Lucida Sans' !important;
+                    }
+
+                    .cabecera {
+                        font-size: 12px;
+                        font-family: 'Lucida Sans' !important;
+                        color: #507AAA;
+                    }
+                </style>
+                <div class="col-12" style="text-align:center;" name='cabecera'>
+                    <center class='cabecera'>Resumen de Ventas</center>
+                    <hr />
+                    <t t-esc="fechai" /> -
+                    <t t-esc="fechaf" /><br />
+                    <table width="100%" style='line-height : 12px !important;'>
+                        <thead>
+                            <tr>
+                                <th class='cabecera'>Usuario</th>
+                                <th>
+                                    <t t-esc="usuario" />
+                                </th>
+                                <th class='cabecera'>Sucursal</th>
+                                <th>
+                                    <t t-esc="sucursal" />
+                                </th>
+
+
+                            </tr>
+                            <tr>
+                                <th class='cabecera'>Cliente</th>
+                                <th>
+                                    <t t-esc="cliente" />
+                                </th>
+                                <th class='cabecera'>Ciudad</th>
+                                <th>
+                                    <t t-esc="ciudad" />
+                                </th>
+
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <t t-name="web.external_layout_footer">
+                <t t-foreach="docs" t-as="o">
+                    <div class="footer" style="font-family: 'Arial' !important;">
+                        <style type="text/css">
+                            .page {
+                                margin: 0px;
+                                padding: 0px;
+                            }
+                        </style>
+                        <div class="oe_structure" />
+                        <div style="float:left">
+                            <b>Pagina </b>
+                            <label class="page" />/<label class="topage" />
+                        </div>
+                        <span  style="float:right">
+                            <t t-esc="usuario" /> <span
+                                t-esc="datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')" /></span>
+                    </div>
+                </t>
+            </t>
+            <t t-call="web.internal_layout">
+                <div class="page" style="font-family: 'Lucida Sans' !important; ">
+                    <style type="text/css">
+                        body {
+                            font-family: 'Lucida Sans' !important;
+                            font-size: 11px;
+                        }
+
+                        h1 {
+                            font-size: 14px;
+                            margin: 1px !important;
+                            padding: 1px !important;
+                        }
+
+                        h2 {
+                            font-size: 12px;
+                            margin: 1px !important;
+                            padding: 1px !important;
+                        }
+
+                        .titulos {
+                            margin-right: auto;
+                            border-collapse: collapse;
+                            font-weight: bold;
+                            text-align: center;
+                            font-size: 9pt
+                        }
+
+                        .columnas {
+                            font-size: 8pt !important;
+                            font-weight: bold !important;
+                            border-collapse: collapse !important;
+                            border-bottom: solid !important;
+                            border-top: solid !important;
+                            border-width: 0.5pt !important
+                        }
+
+                        .header {
+                            margin: 0px;
+                            padding: 0px;
+                        }
+
+                        .datos {
+                            font-size: 8px;
+                            border-collapse: separate
+                        }
+
+                        .cabecera {
+                            padding: 5px;
+                        }
+
+                        .totales {
+                            font-size: 7pt;
+                            font-weight: bold;
+                            border-collapse: collapse;
+                            border-bottom: solid;
+                            border-top: solid;
+                            border-width: 0.5pt
+                        }
+                    </style>
+                    <table width="100%" style='line-height : 12px !important;'>
+                        <thead>
+                            <tr style="background-color:#507AAA;color:#FFFFFF">
+                                   <th width="15%" class='cabecera'>Fecha Pedido</th>
+                                <th width="15%" class='cabecera'>Pedido de Venta</th>
+                                <th width="10%" class='cabecera' >Nro Interno</th>
+                                <th width="10%" class='cabecera'>Plazo de entrega</th>
+                                <th width="10%" class='cabecera'>Cliente</th>
+                                <th width="10%" class='cabecera'>Total ventas</th>
+                                <th width="10%" class='cabecera'>Abonos</th>
+                                <th width="10%" class='cabecera'>Saldo</th>
+                                <th width="10%" class='cabecera'>Sucursal</th>
+                                <th width="10%" class='cabecera'>Usuario</th>
+
+                            </tr>
+                        </thead>
+                       <t t-set="total_venta" t-value="0.0" />
+                       <t t-set="total_abono" t-value="0.0" />
+                       <t t-set="total_saldo" t-value="0.0" />
+                        <tbody style='line-height : 12px !important;'>
+                            <t t-foreach="result_clientes" t-as="cliente" width="100%">
+                                <t t-set="total_saldo" t-value="0.0" />
+                               
+                                    <tr style="">
+                                        <th width="15%" class='cabecera'>
+                                            <t t-esc="cliente[0]" />
+                                        </th>
+                                        <th width="15%" class='cabecera'>
+                                            <t t-esc="cliente[1]" />
+                                        </th>
+                                        <th width="10%" class='cabecera'>
+                                            <t t-esc="cliente[2]" />
+                                        </th>
+                                        <th width="10%" class='cabecera'>
+                                            <t t-esc="cliente[3]" />
+                                        </th>
+                                        <th width="10%" class='cabecera'>
+                                            <t t-esc="cliente[4]" />
+                                        </th>
+                                         <th width="10%" class='cabecera'>
+                                            <t t-esc="cliente[5]" />
+                                            <t t-set="total_venta"
+                                                t-value="total_venta + cliente[5]" />
+                                        </th>
+                                        <th width="10%" class='cabecera'>
+                                            <t t-esc="cliente[9]" />
+                                              <t t-set="total_abono"
+                                                t-value="total_abono + cliente[9]" />
+                                        </th>
+                                         <th width="10%" class='cabecera'>
+                                            <t t-esc="cliente[10]" />
+                                              <t t-set="total_saldo"
+                                                t-value="total_saldo + cliente[10]" />
+                                        </th>
+                                          <th width="10%" class='cabecera'>
+                                            <t t-esc="cliente[6]" />
+                                        </th>  
+                                          <th width="10%" class='cabecera'>
+                                            <t t-esc="cliente[7]" />
+                                        </th>
+                                            <!-- <th width="10%" class='cabecera'>
+                                            <t t-esc="cliente[8]" />
+                                        </th> -->
+                                          <!-- <th width="10%" class='cabecera'>
+                                            <t t-esc="cliente[8]+cliente[7]" />
+                                        </th>
+                                      <t t-set="total_saldo_general"
+                                                t-value="total_saldo_general + cliente[6]+cliente[7]" />
+                                 -->
+                                    </tr>
+                               
+                            </t>
+                            <thead>
+                                <tr style="background-color:#507AAA;color:#FFFFFF">
+                                    <th width="40%" class='cabecera' colspan="6">Total</th>
+                                    <th width="10%" class='cabecera'>
+                                        <t t-esc="'{:,.2f}'.format(total_venta)" />
+                                    </th>
+                                      <th width="10%" class='cabecera'>
+                                        <t t-esc="'{:,.2f}'.format(total_abono)" />
+                                    </th>
+                                      <th width="10%" class='cabecera'>
+                                        <t t-esc="'{:,.2f}'.format(total_saldo)" />
+                                    </th>
+
+                                </tr>
+                            </thead>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </t>
+        </t>
+        </template>
+</odoo>

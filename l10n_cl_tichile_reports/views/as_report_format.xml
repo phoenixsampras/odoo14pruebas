@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- Reporte de ventas por producto	Excel   -->
+    <!-- <report id="as_centas_por_producto_pdf" model="as.cuentas.cobrar" string="Cuentas por cobrar Detallado"
+      report_type="qweb-pdf" name="l10n_cl_tichile_reports.as_pdf_report_ventas_producto"
+      file="l10n_cl_tichile_reports.as_pdf_report_ventas_producto" menu="True" /> -->
+
+    <report id="as_ventas_por_producto_pdf" model="as.ventas.productos" string="Ventas por Porducto"
+      report_type="qweb-pdf" name="l10n_cl_tichile_reports.as_pdf_report_ventas_producto"
+      file="l10n_cl_tichile_reports.as_pdf_report_ventas_producto" menu="True" />
+    <report id="as_ventas_por_producto_report" model="as.ventas.productos" string="Ventas por Producto"
+      report_type="xlsx" name="l10n_cl_tichile_report.ventas_producto.xlsx"
+      file="l10n_cl_tichile_report.ventas_producto.xlsx" attachment_use="False" menu="False" />
+    <record id="as_ventas_por_producto_pdft_paperformat" model="report.paperformat">
+      <field name="name">Cuentas por cobrar PDF</field>
+      <field name="default" eval="True" />
+      <field name="format">Letter</field>
+      <field name="page_height">0</field>
+      <field name="page_width">0</field>
+      <field name="orientation">Portrait</field>
+      <field name="margin_top">55</field>
+      <field name="margin_bottom">25</field>
+      <field name="margin_left">7</field>
+      <field name="margin_right">7</field>
+      <field name="header_line" eval="False" />
+      <field name="header_spacing">47</field>
+      <field name="dpi">90</field>
+      <field name="report_ids" eval="[(4, ref('l10n_cl_tichile_reports.as_ventas_por_producto_pdf'))]" />
+    </record>
+    <report id="as_cuentas_por_cobrar_pdf" model="as.cuentas.cobro" string="Cuentas por Cobrar Detallado"
+      report_type="qweb-pdf" name="l10n_cl_tichile_reports.as_pdf_report_cuentas_cobrar"
+      file="l10n_cl_tichile_reports.as_pdf_report_cuentas_cobrar" menu="True" />
+    <record id="as_as_sale_summary_report_paperformat" model="report.paperformat">
+      <field name="name">Cuentas por cobrar PDF</field>
+      <field name="default" eval="True" />
+      <field name="format">Letter</field>
+      <field name="page_height">0</field>
+      <field name="page_width">0</field>
+      <field name="orientation">Portrait</field>
+      <field name="margin_top">55</field>
+      <field name="margin_bottom">25</field>
+      <field name="margin_left">7</field>
+      <field name="margin_right">7</field>
+      <field name="header_line" eval="False" />
+      <field name="header_spacing">47</field>
+      <field name="dpi">90</field>
+      <field name="report_ids" eval="[(4, ref('l10n_cl_tichile_reports.as_cuentas_por_cobrar_pdf'))]" />
+    </record>
+    <report id="as_cuentas_por_cobrar_detallado_report" model="as.cuentas.cobro" string="Cuentas por Cobrar Detallado"
+      report_type="xlsx" name="l10n_cl_tichile_reports.cuentas_cobro.xlsx"
+      file="l10n_cl_tichile_reports.cuentas_cobro.xlsx" attachment_use="False" menu="False" />
+    <report id="as_cuentas_por_pagar_detallado_report" model="as.cuentas.pagar" string="Cuentas por Pagar Detallado"
+      report_type="xlsx" name="l10n_cl_tichile_reports.cuentas_pagar.xlsx"
+      file="l10n_cl_tichile_reports.cuentas_pagar.xlsx" attachment_use="False" menu="False" />
+    <report id="as_cuentas_por_pagar_pdf" model="as.cuentas.pagar" string="Cuentas por pagar Detallado"
+      report_type="qweb-pdf" name="l10n_cl_tichile_reports.as_pdf_report_cuentas_pagar"
+      file="l10n_cl_tichile_reports.as_pdf_report_cuentas_pagar" menu="True" />
+    <record id="as_as_pagar_report_paperformat" model="report.paperformat">
+      <field name="name">Cuentas por pagar PDF</field>
+      <field name="default" eval="True" />
+      <field name="format">Letter</field>
+      <field name="page_height">0</field>
+      <field name="page_width">0</field>
+      <field name="orientation">Portrait</field>
+      <field name="margin_top">55</field>
+      <field name="margin_bottom">25</field>
+      <field name="margin_left">7</field>
+      <field name="margin_right">7</field>
+      <field name="header_line" eval="False" />
+      <field name="header_spacing">47</field>
+      <field name="dpi">90</field>
+      <field name="report_ids" eval="[(4, ref('l10n_cl_tichile_reports.as_cuentas_por_pagar_pdf'))]" />
+    </record>
+
+
+
+    <report id="as_ventas_cliente_producto_pdf" model="as.ventas.clientes.productos"
+      string="Informa de ventas por Cliente y Producto" report_type="qweb-pdf"
+      name="l10n_cl_tichile_reports.as_pdf_report_cliente_producto"
+      file="l10n_cl_tichile_reports.as_pdf_report_cliente_producto" menu="True" />
+    <report id="as_ventas_cliente_producto_xlsx" model="as.ventas.clientes.productos"
+      string="Informa de ventas por Cliente y Producto" report_type="xlsx"
+      name="l10n_cl_tichile_reports.cliente_producto.xlsx" file="l10n_cl_tichile_reports.cliente_producto.xlsx"
+      attachment_use="False" menu="False" />
+
+    <report id="as_resumen_por_ventas_pdf" model="as.resumen.ventas" string="Resumen de Ventas" report_type="qweb-pdf"
+      name="l10n_cl_tichile_reports.as_pdf_resumen_por_ventas" file="l10n_cl_tichile_reports.as_pdf_resumen_por_ventas"
+      menu="True" />
+
+    <report id="as_ventas_sucursal_dia_pdf" model="as.ventas.sucursal.dia"
+      string="Ventas por sucursal por dia Detallado" report_type="qweb-pdf"
+      name="l10n_cl_tichile_reports.as_pdf_sucursal_dia"
+      file="l10n_cl_tichile_reports.as_pdf_sucursal_dia" menu="True" />
+    <record id="as_as_sale_summary_report_paperformat" model="report.paperformat">
+      <field name="name">ventas por sucursal por dia PDF</field>
+      <field name="default" eval="True" />
+      <field name="format">Letter</field>
+      <field name="page_height">0</field>
+      <field name="page_width">0</field>
+      <field name="orientation">Portrait</field>
+      <field name="margin_top">55</field>
+      <field name="margin_bottom">25</field>
+      <field name="margin_left">7</field>
+      <field name="margin_right">7</field>
+      <field name="header_line" eval="False" />
+      <field name="header_spacing">47</field>
+      <field name="dpi">90</field>
+      <field name="report_ids" eval="[(4, ref('l10n_cl_tichile_reports.as_ventas_por_producto_pdf'))]" />
+    </record>
+
+    <!-- <report id="as_resumen_por_ventas_report" model="as.resumen.ventas" string="Resumen de Ventas" report_type="xlsx"
+      name="l10n_cl_tichile_reports.as_resumen_por_ventas.xlsx"
+      file="l10n_cl_tichile_reports.as_resumen_por_ventas.xlsx" attachment_use="False" menu="False" /> -->
+    <!-- 
+    <report id="as_cuentas_por_cobrar_pdf" model="as.cuentas.cobrar" string="Cuentas por cobrar Detallado"
+      report_type="qweb-pdf" name="l10n_cl_tichile_reports.as_pdf_report_cuentas_cobrar"
+      file="l10n_cl_tichile_reports.as_pdf_report_cuentas_cobrar" menu="True" />
+
+
+    <record id="as_as_sale_summary_report_paperformat" model="report.paperformat">
+      <field name="name">Cuentas por cobrar PDF</field>
+      <field name="default" eval="True" />
+      <field name="format">Letter</field>
+      <field name="page_height">0</field>
+      <field name="page_width">0</field>
+      <field name="orientation">Portrait</field>
+      <field name="margin_top">55</field>
+      <field name="margin_bottom">25</field>
+      <field name="margin_left">7</field>
+      <field name="margin_right">7</field>
+      <field name="header_line" eval="False" />
+      <field name="header_spacing">47</field>
+      <field name="dpi">90</field>
+      <field name="report_ids" eval="[(4, ref('l10n_cl_tichile_reports.as_cuentas_por_cobrar_pdf'))]" />
+    </record>
+
+
+    <report id="as_venta_por_producto_pdf" model="as.ventas.producto" string="ventas por producto Detallado"
+      report_type="qweb-pdf" name="l10n_cl_tichile_reports.as_pdf_report_ventas_producto"
+      file="l10n_cl_tichile_reports.as_pdf_report_ventas_producto" menu="True" />
+    <record id="as_as_sale_summary_report_paperformat" model="report.paperformat">
+      <field name="name">ventas por producto PDF</field>
+      <field name="default" eval="True" />
+      <field name="format">Letter</field>
+      <field name="page_height">0</field>
+      <field name="page_width">0</field>
+      <field name="orientation">Portrait</field>
+      <field name="margin_top">55</field>
+      <field name="margin_bottom">25</field>
+      <field name="margin_left">7</field>
+      <field name="margin_right">7</field>
+      <field name="header_line" eval="False" />
+      <field name="header_spacing">47</field>
+      <field name="dpi">90</field>
+      <field name="report_ids" eval="[(4, ref('l10n_cl_tichile_reports.as_venta_por_producto_pdf'))]" />
+    </record>
+
+
+
+
+
+    <report id="as_resumen_ventas_pdf" model="as.resumen.ventas" string="resumen por ventas Detallado"
+      report_type="qweb-pdf" name="l10n_cl_tichile_reports.as_pdf_report_resumen_ventas"
+      file="l10n_cl_tichile_reports.as_pdf_report_resumen_ventas" menu="True" />
+    <record id="as_as_sale_summary_report_paperformat" model="report.paperformat">
+      <field name="name">resumen por ventas PDF</field>
+      <field name="default" eval="True" />
+      <field name="format">Letter</field>
+      <field name="page_height">0</field>
+      <field name="page_width">0</field>
+      <field name="orientation">Portrait</field>
+      <field name="margin_top">55</field>
+      <field name="margin_bottom">25</field>
+      <field name="margin_left">7</field>
+      <field name="margin_right">7</field>
+      <field name="header_line" eval="False" />
+      <field name="header_spacing">47</field>
+      <field name="dpi">90</field>
+      <field name="report_ids" eval="[(4, ref(l10n_cl_tichile_reports.as_resumen_ventas_pdf'))]" />
+    </record> -->
+
+
+  </data>
+</odoo>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="as_resumen_de_vencimiento_por_dia" model="ir.ui.view">
+            <field name="name">resumen de vencimiento por dia</field>
+            <field name="model">as.resumen.vencimiento.dia</field>
+            <field name="arch" type="xml">
+                <form string="resumen de vencimiento por dia">
+                    <group col="4">
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="partner_ids" widget="many2many_tags" options="{&quot;always_reload&quot;: True, 'no_open': True,'no_create': 1, 'no_create_edit': 1}"/>
+                        <field name="location_ids" widget="many2many_tags" options="{&quot;always_reload&quot;: True, 'no_open': True,'no_create': 1, 'no_create_edit': 1}"/>
+                        <field name="user_ids" widget="many2many_tags" options="{&quot;always_reload&quot;: True, 'no_open': True,'no_create': 1, 'no_create_edit': 1}"/>
+                        <field name="city_ids" widget="many2many_tags" options="{&quot;always_reload&quot;: True, 'no_open': True,'no_create': 1, 'no_create_edit': 1}"/>
+                    </group>
+                    <footer>
+                        <button name="export_xls" 
+                            type="object" 
+                            default_focus="1"
+                            string="Exportar Excel" 
+                            context="{'xls_export':1}"
+                            icon="fa-print"
+                            class="oe_highlight"/>
+                          <button name="export_pdf" 
+                            type="object" 
+                            default_focus="1"
+                            string="Exportar PDF" 
+                            context="{'xls_export':1}"
+                            icon="fa-print"
+                            class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="as_resumen_de_vencimiento_por_dia" model="ir.actions.act_window">
+            <field name="name">resumen de vencimiento por dia</field>
+            <field name="res_model">as.resumen.vencimiento.dia</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="resumen_de_vencimiento_por_dia"/>
+            <field name="target">new</field>
+        </record>
+        
+        <report
+            id="as_resumen_de_vencimiento_por_dia"
+            model="as.resumen.vencimiento.dia"
+            string="resumen_de_vencimiento_por_dia"
+            report_type="xlsx"
+            name="l10n_cl_tichile_reports.resumen_de_vencimiento_por_dia.xlsx"
+            file="l10n_cl_tichile_reports.resumen_de_vencimiento_por_dia.xlsx"
+            attachment_use="False"
+            menu="False"
+        />
+        <menuitem id="as_resumen_de_vencimiento_por_dia" name="resumen de vencimiento por dia" action="as_resumen_de_vencimiento_por_dia" parent="as_menu_cobranza" sequence="13"/>
+    </data>
+</odoo>

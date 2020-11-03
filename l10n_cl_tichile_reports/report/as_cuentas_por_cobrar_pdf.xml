@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="as_pdf_report_cuentas_cobrar">
+        <t t-call="web.html_container">
+
+            <div class="header">
+                <style type="text/css">
+                    .header {
+                        margin: 0px;
+                        padding: 0px;
+                        font-size: 12px;
+                        font-family: 'Lucida Sans' !important;
+                    }
+
+                    .cabecera {
+                        font-size: 12px;
+                        font-family: 'Lucida Sans' !important;
+                        color: #507AAA;
+                    }
+                </style>
+                <div class="col-12" style="text-align:center;" name='cabecera'>
+                    <center class='cabecera'>Reporte Cuentas por Cobrar</center>
+                    <hr />
+                    <t t-esc="fechai" /> -
+                    <t t-esc="fechaf" /><br />
+                    <table width="100%" style='line-height : 12px !important;'>
+                        <thead>
+                            <tr>
+                                <th class='cabecera'>Usuario</th>
+                                <th>
+                                    <t t-esc="usuario" />
+                                </th>
+                                <th class='cabecera'>Sucursal</th>
+                                <th>
+                                    <t t-esc="sucursal" />
+                                </th>
+
+
+                            </tr>
+                            <tr>
+                                <th class='cabecera'>Cliente</th>
+                                <th>
+                                    <t t-esc="cliente" />
+                                </th>
+                                <th class='cabecera'>Ciudad</th>
+                                <th>
+                                    <t t-esc="ciudad" />
+                                </th>
+
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <t t-name="web.external_layout_footer">
+                <t t-foreach="docs" t-as="o">
+                    <div class="footer" style="font-family: 'Arial' !important;">
+                        <style type="text/css">
+                            .page {
+                                margin: 0px;
+                                padding: 0px;
+                            }
+                        </style>
+                        <div class="oe_structure" />
+                        <div style="float:left">
+                            <b>Pagina </b>
+                            <label class="page" />/<label class="topage" />
+                        </div>
+                        <span  style="float:right">
+                            <t t-esc="usuario" /> <span
+                                t-esc="datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')" /></span>
+                    </div>
+                </t>
+            </t>
+            <t t-call="web.internal_layout">
+                <div class="page" style="font-family: 'Lucida Sans' !important; ">
+                    <style type="text/css">
+                        body {
+                            font-family: 'Lucida Sans' !important;
+                            font-size: 11px;
+                        }
+
+                        h1 {
+                            font-size: 14px;
+                            margin: 1px !important;
+                            padding: 1px !important;
+                        }
+
+                        h2 {
+                            font-size: 12px;
+                            margin: 1px !important;
+                            padding: 1px !important;
+                        }
+
+                        .titulos {
+                            margin-right: auto;
+                            border-collapse: collapse;
+                            font-weight: bold;
+                            text-align: center;
+                            font-size: 9pt
+                        }
+
+                        .columnas {
+                            font-size: 8pt !important;
+                            font-weight: bold !important;
+                            border-collapse: collapse !important;
+                            border-bottom: solid !important;
+                            border-top: solid !important;
+                            border-width: 0.5pt !important
+                        }
+
+                        .header {
+                            margin: 0px;
+                            padding: 0px;
+                        }
+
+                        .datos {
+                            font-size: 8px;
+                            border-collapse: separate
+                        }
+
+                        .cabecera {
+                            padding: 5px;
+                        }
+
+                        .totales {
+                            font-size: 7pt;
+                            font-weight: bold;
+                            border-collapse: collapse;
+                            border-bottom: solid;
+                            border-top: solid;
+                            border-width: 0.5pt
+                        }
+                    </style>
+                    <table width="100%" style='line-height : 12px !important;'>
+                        <thead>
+                            <tr style="background-color:#507AAA;color:#FFFFFF">
+                                <th width="15%" class='cabecera'>Ciudad</th>
+                                <th width="15%" class='cabecera'>Código</th>
+                                <th width="40%" class='cabecera' colspan="5">Cliente</th>
+                                <th width="10%" class='cabecera'>Teléfono</th>
+                                <th width="10%" class='cabecera'>Celular</th>
+                                <th width="10%" class='cabecera'>Saldo</th>
+
+                            </tr>
+                        </thead>
+                        <t t-set="total_saldo_general" t-value="0.0" />
+                        <tbody style='line-height : 12px !important;'>
+                            <t t-foreach="result_clientes" t-as="cliente" width="100%">
+                                <t t-set="total_saldo" t-value="0.0" />
+                                <t t-if="cliente[7]['invoices']">
+                                    <tr style="background-color:#f0f0f0;color:#000000">
+                                        <th width="15%" class='cabecera'>
+                                            <t t-esc="cliente[0]" />
+                                        </th>
+                                        <th width="15%" class='cabecera'>
+                                            <t t-esc="cliente[1]" />
+                                        </th>
+                                        <th width="40%" class='cabecera' colspan="5">
+                                            <t t-esc="cliente[2]" />
+                                        </th>
+                                        <!-- <th width="10%" class='cabecera'>
+                                        <t t-esc="cliente[3]" />
+                                    </th> -->
+                                        <th width="10%" class='cabecera'>
+                                            <t t-esc="cliente[4]" />
+                                        </th>
+                                        <th width="10%" class='cabecera'>
+                                            <t t-esc="cliente[5]" />
+                                        </th>
+                                        <th width="10%" class='cabecera'>
+                                            <t t-foreach="cliente[7]['invoices']" t-as="invoice" width="100%">
+                                                <t t-set="total_saldo"
+                                                    t-value="total_saldo + (invoice[7]-invoice[15])" />
+                                            </t>
+                                            <t t-esc="'{:,.2f}'.format(total_saldo)" />
+                                            <t t-set="total_saldo_general"
+                                                t-value="total_saldo_general + total_saldo" />
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th width="15%" class='cabecera' colspan="2">
+                                            Doc. Origen
+                                        </th>
+                                        <th width="15%" class='cabecera'>
+                                            Factura
+                                        </th>
+                                        <th width="40%" class='cabecera'>
+                                            Fecha de Cred.
+                                        </th>
+                                        <th width="10%" class='cabecera'>
+                                            Vencimiento.
+                                        </th>
+                                        <th width="10%" class='cabecera'>
+                                            Est.
+                                        </th>
+                                        <th width="10%" class='cabecera'>
+                                            Dia Ven
+                                        </th>
+                                        <th width="10%" class='cabecera'>
+                                            Total
+                                        </th>
+                                        <th width="10%" class='cabecera'>
+                                            Abonos
+                                        </th>
+                                        <th width="10%" class='cabecera'>
+                                            Saldo
+                                        </th>
+                                    </tr>
+                                    <t t-foreach="cliente[7]['invoices']" t-as="invoice" width="100%">
+                                        <tr>
+                                            <td width="15%" class='cabecera2' colspan="2">
+                                                <t t-esc="invoice[3]" />
+                                            </td>
+                                            <td width="15%" class='cabecera2'>
+                                                <t t-esc="invoice[5]" />
+                                            </td>
+                                            <td width="40%" class='cabecera2'>
+                                                <t t-esc="invoice[1]" />
+                                            </td>
+                                            <td width="10%" class='cabecera2'>
+                                                <t t-esc="invoice[2]" />
+                                            </td>
+                                            <td width="10%" class='cabecera2'>
+                                                <t t-esc="invoice[13]" />
+                                            </td>
+                                            <t t-if="int(invoice[14])&gt;0">
+                                                <td width="10%" class='cabecera2' style="color:red !important">
+                                                    <t t-esc="invoice[14]" />
+                                                </td>
+                                            </t>
+                                            <t t-if="int(invoice[14])&lt;0">
+                                                <td width="10%" class='cabecera2'>
+                                                    <t t-esc="invoice[14]" />
+                                                </td>
+                                            </t>
+                                            <td width="10%" class='cabecera2'>
+                                                <t t-esc="'{:,.2f}'.format(invoice[7])" />
+                                            </td>
+                                            <td width="10%" class='cabecera2'>
+                                                <t t-esc="invoice[15]" />
+                                            </td>
+                                            <td width="10%" class='cabecera2'>
+                                                <t t-esc="'{:,.2f}'.format(invoice[7]-invoice[15])" />
+                                            </td>
+
+                                        </tr>
+                                    </t>
+                                </t>
+                            </t>
+                            <thead>
+                                <tr style="background-color:#507AAA;color:#FFFFFF">
+                                    <th width="40%" class='cabecera' colspan="9">Total</th>
+                                    <th width="10%" class='cabecera'>
+                                        <t t-esc="'{:,.2f}'.format(total_saldo_general)" />
+                                    </th>
+
+                                </tr>
+                            </thead>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </t>
+        </t>
+        </template>
+</odoo>

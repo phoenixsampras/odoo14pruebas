@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+        <menuitem id="as_menu_cobranza" name="Cobranzas"  parent="account.menu_finance_reports" sequence="50" groups="sales_team.group_sale_salesman" />
+   
+  </data>
+</odoo>
