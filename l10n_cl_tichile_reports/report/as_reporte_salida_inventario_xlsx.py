@@ -24,11 +24,11 @@ from odoo import api, models, _
 from odoo.exceptions import UserError
 
 class as_sales_libro_ventas_tax(models.AbstractModel):
-    _name = 'l10n_cl_tichile_reports.informe_de_ventas_por_cliente_por_vendedor.xlsx'
+    _name = 'report.l10n_cl_tichile_reports.salida_inventario.xlsx'
     _inherit = 'report.report_xlsx.abstract'
 
     def generate_xlsx_report(self, workbook, data, lines):     
-        sheet = workbook.add_worksheet('ventas_por_cliente_por_vendedor')
+        sheet = workbook.add_worksheet('reporte por lista de producto')
         #estilos
         titulo1 = workbook.add_format({'font_size': 16,'font_name': 'Lucida Sans', 'align': 'center', 'bold':True,'bg_color': '#ffffff'})
         titulo2 = workbook.add_format({'font_size': 10, 'align': 'center', 'bold':True })
@@ -55,9 +55,11 @@ class as_sales_libro_ventas_tax(models.AbstractModel):
         letter3 = workbook.add_format({'font_size': 9, 'align': 'right','font_size': 11,'font_name': 'Lucida Sans','bg_color': '#ffffff'})
         letter4 = workbook.add_format({'font_size': 9, 'align': 'left', 'bold': True,'bg_color': '#ffffff'})
         letter4C = workbook.add_format({'font_size': 9, 'align': 'left', 'bold': True,'color':'#000000','font_name': 'Lucida Sans','bg_color': '#ffffff' })
-        letter4F = workbook.add_format({'font_size': 9, 'align': 'left', 'bold': True,'color': '#FFFFFF','bg_color': '#ffffff','font_name': 'Lucida Sans',})
+        letter4F = workbook.add_format({'font_size': 9, 'align': 'left', 'bold': True,'color': '#000000','bg_color': '#ffffff','font_name': 'Lucida Sans',})
         letter4G = workbook.add_format({'font_size': 9, 'align': 'left', 'bold': True,'color': '#000000','bg_color': '#f0f0f0','font_name': 'Lucida Sans',})
+        letter4G2 = workbook.add_format({'font_size': 9, 'align': 'left', 'bold': True,'color': '#000000','bg_color': '#FFFAF0','font_name': 'Lucida Sans',})
         letter4S = workbook.add_format({'font_size': 9, 'align': 'left', 'bold': True,'bg_color': '#ffffff'})
+        letter4S_right = workbook.add_format({'font_size': 9, 'align': 'right', 'bold': True,'bg_color': '#ffffff','num_format': '#,##0.00',})
         letter41S = workbook.add_format({'font_size': 9, 'align': 'left','bg_color': '#ffffff'})
         letter41Si = workbook.add_format({'font_size': 9, 'align': 'right','bg_color': '#ffffff'})
         letter41Sr = workbook.add_format({'font_size': 9, 'align': 'left','color': 'red','bg_color': '#ffffff'})
@@ -76,8 +78,8 @@ class as_sales_libro_ventas_tax(models.AbstractModel):
         sheet.set_column('I:I',10, letter1)
         sheet.set_column('J:J',10, letter1)
         sheet.set_column('K:K',10, letter1)
-        sheet.set_column('L:L',10, letter1)
-        sheet.set_column('M:M',10, letter1)
+        sheet.set_column('L:L',20, letter1)
+        sheet.set_column('M:M',20, letter1)
         # sheet.set_column('N:N',12, letter1)
         # sheet.set_column('O:O',12, letter1)
         # sheet.set_column('P:P',5, letter1)
@@ -91,30 +93,36 @@ class as_sales_libro_ventas_tax(models.AbstractModel):
         # Titulos, subtitulos, filtros y campos del reporte
         fecha_inicial = datetime.strptime(str(data['form']['start_date']), '%Y-%m-%d').strftime('%d/%m/%Y')
         fecha_final = datetime.strptime(str(data['form']['end_date']), '%Y-%m-%d').strftime('%d/%m/%Y')
-        sheet.merge_range('A1:V1', 'informe_de_ventas_por_cliente_por_vendedor', titulo1)
-        sheet.merge_range('A2:V2', fecha_inicial +' - '+ fecha_final, titulo4)
+        sheet.merge_range('A1:M1', 'Salidas de Inventario', titulo1)
+        sheet.merge_range('A2:M2', fecha_inicial +' - '+ fecha_final, titulo4)
         fecha = (datetime.now() - timedelta(hours=4)).strftime('%d/%m/%Y %H:%M:%S')
         sheet.merge_range('A3:D3', self.env.user.company_id.name, letter4)
 
 
 
-        sheet.merge_range('C4:D4', 'Usuario:', letter4C)
-        sheet.merge_range('E4:G4', self.env.user.partner_id.name, letter4)        
-        sheet.merge_range('K4:L4', 'Sucuarsal:', letter4C)
-        sheet.merge_range('M4:N4', 'Todos', letter4)
-        sheet.merge_range('C5:D5', 'Cliente:', letter4C)
-        sheet.merge_range('E5:G5', 'Todos', letter4)        
-        sheet.merge_range('K5:L5', 'Ciudad:', letter4C)
-        sheet.merge_range('M5:N5', 'Todos', letter4)
+        # sheet.merge_range('C4:D4', 'Usuario:', letter4C)
+        # sheet.merge_range('E4:G4', self.env.user.partner_id.name, letter4)        
+        sheet.merge_range('B4:C4', 'Sucuarsal:', letter4C)
+        sheet.merge_range('D4:F4', 'Todos', letter4)
+        # sheet.merge_range('C5:D5', 'Cliente:', letter4C)
+        # sheet.merge_range('E5:G5', 'Todos', letter4)        
+        # sheet.merge_range('B5:C5', 'Producto:', letter4C)
+        # sheet.merge_range('D5:F5', 'Todos', letter4)
         sheet.freeze_panes(6, 0)
-        filas=
-        sheet.write(filas, 0, 'Cóodigo', letter4F)
-        sheet.write(filas, 1, 'Producto', letter4F)
-        sheet.write(filas, 2, 'UdM', letter4F)
-        sheet.write(filas, 3, 'Cantidad Pedida', letter4F)
-        sheet.write(filas, 4, 'Base Imponible', letter4F)
-        sheet.write(filas, 5, 'Impuesto', letter4F)
-        sheet.write(filas, 6, 'Total', letter4F)
+        filas=5
+        sheet.write(filas, 0, 'Fecha', letter4G)
+        sheet.write(filas, 1, 'Nota Salida', letter4G)
+        sheet.write(filas, 2, 'Nota Venta', letter4G)
+        sheet.write(filas, 3, 'Cliente', letter4G)
+        sheet.write(filas, 4, 'Cóodigo', letter4G)
+        sheet.write(filas, 5, 'Nombre de Producto', letter4G)
+        sheet.write(filas, 6, 'Cantidad', letter4G)
+        sheet.write(filas, 7, 'Costo', letter4G)
+        sheet.write(filas, 8, 'Total', letter4G)
+        sheet.write(filas, 9, 'Categoria Producto', letter4G)
+        sheet.write(filas, 10, 'Estado', letter4G)
+        sheet.write(filas, 11, 'Ubicación Origen', letter4G)
+        sheet.write(filas, 12, 'Ubicación Destino', letter4G)
         filas+=1
         # Preparando variables para cada casod e consulta
         dict_city_ids=[]
@@ -151,92 +159,77 @@ class as_sales_libro_ventas_tax(models.AbstractModel):
         if dict_almacen:
             filtro_almacen = "AND sl.id in "+str(dict_almacen).replace('[','(').replace(']',')')
         else:
-            almacenes = self.env['stock.location'].sudo().search([('as_type_almacen', '=', False),('usage', '=', 'internal')])
+            almacenes = self.env['stock.location'].sudo().search([('usage', '=', 'internal')])
             for almecen in almacenes:
                 dict_almacen.append(almecen.id)
             filtro_almacen = "AND sl.id in "+str(dict_almacen).replace('[','(').replace(']',')')
+        dict_product = []
+        filtro_product = ''
+        if data['form']['product_id']:
+            for ids in data['form']['product_id']:
+                dict_product.append(ids)
+        if dict_product:
+            filtro_product = "AND pp.id in "+str(dict_product).replace('[','(').replace(']',')')
+      
         gran_total = 0.0
-        #consultas
-        consulta_clientes = ("""
+        gran_total2 = 0.0
+        consulta_productos = ("""
             SELECT 
-            rcs.name
-            ,rp.vat
+            sm.id
+            ,to_char((sm.date AT TIME ZONE 'UTC' AT TIME ZONE 'BOT')::date,'DD/MM/YYYY') AS fecha
+            ,sp.name
+            ,sp.origin
             ,rp.name
-            ,rp.business_name
-            ,rp.phone
-            ,rp.mobile
-            ,rp.id
-            from res_partner rp
-            left join res_country_state rcs on rp.state_id = rcs.id
-            where customer=True
+            ,pp.default_code
+            ,pt.name
+            ,sm.product_qty
+            ,sm.price_unit
+            ,pc.name
+            ,sp.state
+            ,sl1.name
+            ,sl2.name
+            FROM stock_move sm
+            join stock_picking sp on sp.id = sm.picking_id
+            join product_product pp on pp.id= sm.product_id
+            join sale_order so on so.name =sp.origin and so.state in ('sale','done','sent')
+            join res_partner rp on rp.id= sp.partner_id
+            join product_template pt on pt.id=pp.product_tmpl_id
+            left join product_category pc on pc.id = pt.categ_id
+            left join stock_location sl1 on sm.location_id=sl1.id
+            left join stock_location sl2 on sm.location_dest_id=sl2.id
                 """ + str(filtro_clientes) + """
+                 AND so.date_order::date <= '"""+str(data['form']['end_date'])+"""'
+                """ + str(filtro_product) + """
+           
+            
             """)
-        self.env.cr.execute(consulta_clientes)
-        clientes = [k for k in self.env.cr.fetchall()]
-        for cliente in clientes:
-            saldott = 0.00
-            consultas_ventas = ("""
-                SELECT
-                to_char((so.date_order AT TIME ZONE 'UTC' AT TIME ZONE 'BOT')::date,'DD/MM/YYYY') AS fecha
-                ,to_char((so.date_order AT TIME ZONE 'UTC' AT TIME ZONE 'BOT')::date,'DD/MM/YYYY') AS fecha_vencimiento
-                ,so.name as nro_nota
-                ,so.name AS numero_interno	
-                ,so.amount_total AS pagado
-                ,so.amount_total as saldo			
-                ,sl.name as almacen
-                ,so.id
-                ,sol.id
-                FROM sale_order AS so
-                left join sale_order_line sol on sol.order_id = so.id
-                JOIN res_users AS usuarios ON usuarios.id = so.user_id
-                JOIN res_partner AS asesor ON asesor.id = usuarios.partner_id
-                LEFT JOIN res_partner AS cliente ON cliente.id = so.partner_id
-                join stock_picking sp on sp.origin=so.name
-                join stock_location sl on sp.location_id=sl.id
-                WHERE
-                cliente.id = """+str(cliente[6])+"""
-                AND so.date_order::date <= '"""+str(data['form']['end_date'])+"""'
-                """ + str(filtro_vendedores_po) + """
-                """ + str(filtro_almacen) + """
-                and so.state NOT IN ('cancel','draft') group by 1,2,3,4,5,6,7,8,9,10,11,12,13
-                """)
-            self.env.cr.execute(consultas_ventas)
-            ventas = [k for k in self.env.cr.fetchall()]
-            #informacion que se va a escribir en excel
-            if ventas:
-                sheet.merge_range('A'+str(filas+1)+':B'+str(filas+1)+'', cliente[0], letter4G)
-                sheet.merge_range('C'+str(filas+1)+':D'+str(filas+1)+'', cliente[1], letter4G)
-                sheet.merge_range('E'+str(filas+1)+':J'+str(filas+1)+'', cliente[2], letter4G)
-                sheet.merge_range('K'+str(filas+1)+':R'+str(filas+1)+'', cliente[3], letter4G)
-                # sheet.write(filas, 14, cliente[3], letter4G)
-                sheet.merge_range('P'+str(filas+1)+':R'+str(filas+1)+'',  cliente[4], letter4G)
-                sheet.merge_range('S'+str(filas+1)+':U'+str(filas+1)+'',  cliente[5], letter4G)
-                filav=filas
-                filas+=1
-                saldo_anterior = 0.0
-                abono_anterior = 0.0
-                movimientos_ventas = []
-                movimientos_vencidos = []
-                saldo_vencido = 0.0
-                saldot = 0.0
-                total_creditos = 0.0
-                pagadot = 0.0
-                for lines in ventas:
-                    movimientos_vencidos.append(lines)
-                
-                if movimientos_vencidos != []:
-                    for move in movimientos_vencidos:
-                        saldot=0.0
-                        sheet.merge_range('B'+str(filas+1)+':D'+str(filas+1)+'', move[3], letter41S)
-                        sheet.merge_range('E'+str(filas+1)+':F'+str(filas+1)+'', move[5], letter41S)
-                        sheet.merge_range('G'+str(filas+1)+':I'+str(filas+1)+'', move[1], letter41S)
-                        sheet.merge_range('J'+str(filas+1)+':L'+str(filas+1)+'', move[2], letter41S)
-                        
-                        filas +=1
-                sheet.write(filav, 21, saldott, letter4G)
-        sheet.merge_range('S'+str(filas+1)+':U'+str(filas+1)+'',  'Total', letter41S)
-        sheet.write(filas, 21, gran_total, letter4S)
-
+        self.env.cr.execute(consulta_productos)
+        productos = [k for k in self.env.cr.fetchall()]
+        for producto in productos:
+            precio = 0.0
+            sheet.write(filas, 0, producto[1], letter41S)
+            sheet.write(filas, 1, producto[2], letter41S)
+            sheet.write(filas, 2, producto[3], letter41S)
+            sheet.write(filas, 3, producto[4], number_right)
+            sheet.write(filas, 4, producto[5], number_right)
+            sheet.write(filas, 5, producto[6], number_right)
+            sheet.write(filas, 6, producto[7], number_right)
+            sheet.write(filas, 7, producto[8] or 0.0, number_right)
+            if producto[8]:
+                precio = producto[8]
+            else:
+                precio = 0.0
+            sheet.write(filas, 8, precio* producto[7], number_right)
+            sheet.write(filas, 9, producto[9], number_right)
+            sheet.write(filas, 10, producto[10], number_right)
+            sheet.write(filas, 11, producto[11], number_right)
+            sheet.write(filas, 12, producto[12], number_right)
+            gran_total+= precio* producto[7]
+            gran_total2+= 0.0
+            filas+=1
+        sheet.merge_range('A'+str(filas+1)+':C'+str(filas+1)+'',  'Total', letter4)
+        # sheet.write(filas, 3, gran_total, letter4S_right)
+        sheet.write(filas, 8, gran_total, letter4S_right)
 
 
 

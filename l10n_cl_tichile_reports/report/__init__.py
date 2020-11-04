@@ -8,3 +8,7 @@ from . import as_resumen_por_ventas_pdf
 from . import as_ventas_por_vendedor_xlsx
 from . import as_kardex_productos
 from . import as_ventas_por_sucursal_por_dia_pdf
+from . import as_ventas_utilidad_xlsx
+from . import as_reporte_por_lista_de_productos_xlsx
+from . import as_reporte_salida_inventario_xlsx
+from . import as_reporte_ingreso_inventario_xlsx

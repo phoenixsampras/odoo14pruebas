@@ -7,3 +7,7 @@ access_as_resumen_ventas,as_resumen_ventas,model_as_resumen_ventas,base.group_us
 access_as_ventas_vendedor,as_ventas_vendedor,model_as_ventas_vendedor,base.group_user,1,1,1,1
 access_as_kardex_productos_wiz,as_kardex_productos_wiz,model_as_kardex_productos_wiz,base.group_user,1,1,1,1
 access_as_ventas_sucursal_dia,as_ventas_sucursal_dia,model_as_ventas_sucursal_dia,base.group_user,1,1,1,1
+access_as_resumen_ventas_utilidad,as_resumen_ventas_utilidad,model_as_resumen_ventas_utilidad,base.group_user,1,1,1,1
+access_as_reporte_lista_producto,as_reporte_lista_producto,model_as_reporte_lista_producto,base.group_user,1,1,1,1
+access_as_salida_inventario,as_salida_inventario,model_as_salida_inventario,base.group_user,1,1,1,1
+access_as_ingreso_inventario,as_ingreso_inventario,model_as_ingreso_inventario,base.group_user,1,1,1,1

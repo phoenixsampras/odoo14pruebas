@@ -6,3 +6,7 @@ from . import as_resumen_por_ventas
 from . import as_ventas_por_vendedor
 from . import as_kardex_productos_wiz
 from . import as_ventas_sucursal_dia
+from . import as_reporte_por_ventas_por_utilidad
+from . import as_reporte_por_lista_de_productos
+from . import as_reporte_salidas_inventario
+from . import as_reporte_ingresos_inventario

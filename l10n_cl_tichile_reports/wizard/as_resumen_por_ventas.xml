@@ -45,6 +45,6 @@
         </record>
         
        
-        <menuitem id="as_resumen_por_ventas_id" name="Resumen de Ventas" action="as_action_resumen_por_ventas" parent="sale.menu_sale_report"  sequence="5"/>
+        <menuitem id="as_resumen_por_ventas_id" name="Resumen de Ventas" action="as_action_resumen_por_ventas" parent="sale.menu_sale_report"  sequence="20"/>
     </data>
 </odoo>

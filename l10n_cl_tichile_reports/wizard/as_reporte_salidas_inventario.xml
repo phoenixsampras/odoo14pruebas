@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="as_ventas_por_vendedor_views" model="ir.ui.view">
-            <field name="name">Resumen Ventas por vendedor</field>
-            <field name="model">as.ventas.vendedor</field>
+        <record id="as_reporte_salida_inventario" model="ir.ui.view">
+            <field name="name">Reporte listado de Productos</field>
+            <field name="model">as.salida.inventario</field>
             <field name="arch" type="xml">
-                <form string="Ventas por vendedor">
+                <form string="Salidas de Inventario">
                     <group col="4">
                         <field name="start_date"/>
                         <field name="end_date"/>
-                        <field name="partner_ids" widget="many2many_tags" options="{&quot;always_reload&quot;: True, 'no_open': True,'no_create': 1, 'no_create_edit': 1}"/>
+                        <!-- <field name="partner_ids" widget="many2many_tags" options="{&quot;always_reload&quot;: True, 'no_open': True,'no_create': 1, 'no_create_edit': 1}"/> -->
                         <field name="location_ids" widget="many2many_tags" options="{&quot;always_reload&quot;: True, 'no_open': True,'no_create': 1, 'no_create_edit': 1}"/>
                         <field name="user_ids" widget="many2many_tags" options="{&quot;always_reload&quot;: True, 'no_open': True,'no_create': 1, 'no_create_edit': 1}"/>
-                        <field name="city_ids" widget="many2many_tags" options="{&quot;always_reload&quot;: True, 'no_open': True,'no_create': 1, 'no_create_edit': 1}"/>
+                        <field name="product_id" widget="many2many_tags" options="{&quot;always_reload&quot;: True, 'no_open': True,'no_create': 1, 'no_create_edit': 1}"/>
                     </group>
                     <footer>
                         <button name="export_xls" 
@@ -36,17 +36,16 @@
             </field>
         </record>
 
-        <record id="as_action_ventas_por_vendedor" model="ir.actions.act_window">
-            <field name="name">Resumen ventas por vendedor</field>
-            <field name="res_model">as.ventas.vendedor</field>
+        <record id="as_action_salida_inventario" model="ir.actions.act_window">
+            <field name="name">Salidas de Inventario action</field>
+            <field name="res_model">as.salida.inventario</field>
             <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="as_ventas_por_vendedor_views"/>
+            <field name="view_id" ref="as_reporte_salida_inventario"/>
             <field name="target">new</field>
         </record>
-
-  
-        <menuitem id="as_ventas_por_vendedor_id" name="Resumen ventas por vendedor" action="as_action_ventas_por_vendedor"  parent="sale.menu_sale_report" sequence="2"/>
-
-
+        
+      
+    
+        <menuitem id="as_salida_inventario_id" name="Salidas de Inventario" action="as_action_salida_inventario" parent="stock.menu_warehouse_report"   sequence="12"/>
     </data>
 </odoo>
