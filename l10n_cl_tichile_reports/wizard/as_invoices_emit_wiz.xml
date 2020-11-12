@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="as_report_invoices_emit" model="ir.ui.view">
+            <field name="name">Facturas Emitidas</field>
+            <field name="model">as.invoices.emit.wiz</field>
+            <field name="arch" type="xml">
+                <form string="Facturas Emitidas">
+                    <group col="2">
+                        <group>
+                            <field name="fecha_inicial" />
+
+                            <field name="nombre_cliente" 
+                                options="{&quot;always_reload&quot;: True, 'no_open': True,'no_create': 1, 'no_create_edit': 1}" />
+                            <field name="as_tipo" />
+                        </group>
+                        <group>
+                            <field name="fecha_final" />
+                            <field name="as_razon_social" />
+                            <field name="asesor" context="{'search_default_customer':1, 'show_address': 1}"
+                                options="{&quot;always_reload&quot;: True, 'no_open': True,'no_create': 1, 'no_create_edit': 1}" />
+                        </group>
+                    </group>
+                    <footer>
+
+                        <button name="export_xls" default_focus="1" string="Exportar a Excel" type="object"
+                            class="oe_highlight" context="{'xls_export':1}" icon="fa-download" />
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_facturas_emitidas_qweb" model="ir.actions.act_window">
+            <field name="name">Facturas Emitidas</field>
+            <field name="res_model">as.invoices.emit.wiz</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="as_report_invoices_emit" />
+            <field name="target">new</field>
+        </record>
+    
+       
+        <menuitem id="as_invoices_ventas" name="Facturas Emitidas" action="action_facturas_emitidas_qweb"
+            parent="sale.menu_sale_report" sequence="80" groups="sales_team.group_sale_salesman" />
+
+
+    </data>
+</odoo>

@@ -12,3 +12,6 @@ from . import as_ventas_utilidad_xlsx
 from . import as_reporte_por_lista_de_productos_xlsx
 from . import as_reporte_salida_inventario_xlsx
 from . import as_reporte_ingreso_inventario_xlsx
+from . import as_reporte_salida_inventario_pdf
+from . import as_reporte_existencias
+from . import as_invoices_emit_xlsx

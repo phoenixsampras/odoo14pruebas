@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="as__stock_form_view">
+            <field name="name">stock.quantity.history.view.costs</field>
+            <field name="model">stock.quantity.history</field>
+            <field name="inherit_id" ref="stock.view_stock_quantity_history" />
+             <field name="priority" eval="20" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='inventory_datetime']" position="after">
+                    <field name="bajo_stock" />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

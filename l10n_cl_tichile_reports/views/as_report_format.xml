@@ -12,6 +12,41 @@
     <report id="as_ventas_por_producto_report" model="as.ventas.productos" string="Ventas por Producto"
       report_type="xlsx" name="l10n_cl_tichile_report.ventas_producto.xlsx"
       file="l10n_cl_tichile_report.ventas_producto.xlsx" attachment_use="False" menu="False" />
+    <report id="as_invoices_emit" model="as.invoices.emit.wiz" string="Facturas Emitidas" report_type="xlsx"
+      name="l10n_cl_tichile_reports.invoices_emit_report_xls.xlsx"
+      file="l10n_cl_tichile_reports.invoices_emit_report_xls.xlsx" attachment_use="False" />
+    <report id="as_invoices_emit" model="as.invoices.emit.wiz" string="Facturas Emitidas" report_type="xlsx"
+      name="l10n_cl_tichile_reports.invoices_emit_report_xls.xlsx"
+      file="l10n_cl_tichile_reports.invoices_emit_report_xls.xlsx" attachment_use="False" />
+
+    <report 
+    id="as_action_report_gastos" 
+    model="stock.landed.cost" 
+    string="Gasto de Envio" 
+    report_type="qweb-pdf"
+    name="l10n_cl_tichile_reports.as_report_gastos_envio" 
+    file="l10n_cl_tichile_reports.as_report_gastos_envio" 
+    menu="True" 
+    />
+      <record id="as_as_gastos_paperformat" model="report.paperformat">
+      <field name="name">Gasto de envio PDF</field>
+      <field name="default" eval="True" />
+      <field name="format">Letter</field>
+      <field name="page_height">0</field>
+      <field name="page_width">0</field>
+      <field name="orientation">Portrait</field>
+      <field name="margin_top">55</field>
+      <field name="margin_bottom">25</field>
+      <field name="margin_left">7</field>
+      <field name="margin_right">7</field>
+      <field name="header_line" eval="False" />
+      <field name="header_spacing">47</field>
+      <field name="dpi">90</field>
+      <field name="report_ids" eval="[(4, ref('l10n_cl_tichile_reports.as_action_report_gastos'))]" />
+    </record>
+    <report id="as_salidas_inventario_pdf" model="as.salida.inventario" string="Salidas de Inventario PDF"
+      report_type="qweb-pdf" name="l10n_cl_tichile_reports.as_pdf_salida_inventario"
+      file="l10n_cl_tichile_reports.as_pdf_salida_inventario" menu="True" />
     <record id="as_ventas_por_producto_pdft_paperformat" model="report.paperformat">
       <field name="name">Cuentas por cobrar PDF</field>
       <field name="default" eval="True" />
@@ -26,8 +61,15 @@
       <field name="header_line" eval="False" />
       <field name="header_spacing">47</field>
       <field name="dpi">90</field>
-      <field name="report_ids" eval="[(4, ref('l10n_cl_tichile_reports.as_ventas_por_producto_pdf'))]" />
+      <field name="report_ids"
+        eval="[(4, ref('l10n_cl_tichile_reports.as_ventas_por_producto_pdf')),(4, ref('l10n_cl_tichile_reports.as_salidas_inventario_pdf'))]" />
     </record>
+
+
+
+
+
+
     <report id="as_cuentas_por_cobrar_pdf" model="as.cuentas.cobro" string="Cuentas por Cobrar Detallado"
       report_type="qweb-pdf" name="l10n_cl_tichile_reports.as_pdf_report_cuentas_cobrar"
       file="l10n_cl_tichile_reports.as_pdf_report_cuentas_cobrar" menu="True" />
@@ -73,59 +115,21 @@
       <field name="report_ids" eval="[(4, ref('l10n_cl_tichile_reports.as_cuentas_por_pagar_pdf'))]" />
     </record>
 
- <report
-            id="as_salida_inventario_report"
-            model="as.salida.inventario"
-            string="Reporte Salida de Inventario"
-            report_type="xlsx"
-            name="l10n_cl_tichile_reports.salida_inventario.xlsx"
-            file="l10n_cl_tichile_reports.salida_inventario.xlsx"
-            attachment_use="False"
-            menu="False"
-    
-        />
-         <report
-            id="as_ingreso_inventario_report"
-            model="as.ingreso.inventario"
-            string="Reporte Ingreso de Inventario"
-            report_type="xlsx"
-            name="l10n_cl_tichile_reports.ingreso_inventario.xlsx"
-            file="l10n_cl_tichile_reports.ingreso_inventario.xlsx"
-            attachment_use="False"
-            menu="False"
-    
-        />
-        <report
-            id="as_lista_por_producto_report"
-            model="as.reporte.lista.producto"
-            string="Reporte por lista por producto"
-            report_type="xlsx"
-            name="l10n_cl_tichile_reports.lista_productos.xlsx"
-            file="l10n_cl_tichile_reports.lista_productos.xlsx"
-            attachment_use="False"
-            menu="False"
-    
-        />
-                <report
-            id="as_resumen_ventas_utilidad"
-            model="as.resumen.ventas.utilidad"
-            string="Informe de Ventas y Utilidad"
-            report_type="xlsx"
-            name="l10n_cl_tichile_reports.resumen_ventas_utilidad.xlsx"
-            file="l10n_cl_tichile_reports.resumen_ventas_utilidad.xlsx"
-            attachment_use="False"
-            menu="False"
-        />
-      <report
-            id="as_ventas_por_vendedor_report"
-            model="as.ventas.vendedor"
-            string="Ventas por vendedor"
-            report_type="xlsx"
-            name="l10n_cl_tichile_reports.ventas_vendedor.xlsx"
-            file="l10n_cl_tichile_reports.ventas_vendedor.xlsx"
-            attachment_use="False"
-            menu="False"
-        />
+    <report id="as_salida_inventario_report" model="as.salida.inventario" string="Reporte Salida de Inventario"
+      report_type="xlsx" name="l10n_cl_tichile_reports.salida_inventario.xlsx"
+      file="l10n_cl_tichile_reports.salida_inventario.xlsx" attachment_use="False" menu="False" />
+    <report id="as_ingreso_inventario_report" model="as.ingreso.inventario" string="Reporte Ingreso de Inventario"
+      report_type="xlsx" name="l10n_cl_tichile_reports.ingreso_inventario.xlsx"
+      file="l10n_cl_tichile_reports.ingreso_inventario.xlsx" attachment_use="False" menu="False" />
+    <report id="as_lista_por_producto_report" model="as.reporte.lista.producto" string="Reporte por lista por producto"
+      report_type="xlsx" name="l10n_cl_tichile_reports.lista_productos.xlsx"
+      file="l10n_cl_tichile_reports.lista_productos.xlsx" attachment_use="False" menu="False" />
+    <report id="as_resumen_ventas_utilidad" model="as.resumen.ventas.utilidad" string="Informe de Ventas y Utilidad"
+      report_type="xlsx" name="l10n_cl_tichile_reports.resumen_ventas_utilidad.xlsx"
+      file="l10n_cl_tichile_reports.resumen_ventas_utilidad.xlsx" attachment_use="False" menu="False" />
+    <report id="as_ventas_por_vendedor_report" model="as.ventas.vendedor" string="Ventas por vendedor"
+      report_type="xlsx" name="l10n_cl_tichile_reports.ventas_vendedor.xlsx"
+      file="l10n_cl_tichile_reports.ventas_vendedor.xlsx" attachment_use="False" menu="False" />
     <report id="as_ventas_cliente_producto_pdf" model="as.ventas.clientes.productos"
       string="Informa de ventas por Cliente y Producto" report_type="qweb-pdf"
       name="l10n_cl_tichile_reports.as_pdf_report_cliente_producto"
@@ -141,8 +145,8 @@
 
     <report id="as_ventas_sucursal_dia_pdf" model="as.ventas.sucursal.dia"
       string="Ventas por sucursal por dia Detallado" report_type="qweb-pdf"
-      name="l10n_cl_tichile_reports.as_pdf_sucursal_dia"
-      file="l10n_cl_tichile_reports.as_pdf_sucursal_dia" menu="True" />
+      name="l10n_cl_tichile_reports.as_pdf_sucursal_dia" file="l10n_cl_tichile_reports.as_pdf_sucursal_dia"
+      menu="True" />
     <record id="as_as_sale_summary_report_paperformat" model="report.paperformat">
       <field name="name">ventas por sucursal por dia PDF</field>
       <field name="default" eval="True" />

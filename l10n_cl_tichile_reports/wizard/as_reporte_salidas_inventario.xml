@@ -22,13 +22,13 @@
                             context="{'xls_export':1}"
                             icon="fa-print"
                             class="oe_highlight"/>
-                          <!-- <button name="export_pdf" 
+                          <button name="export_pdf" 
                             type="object" 
                             default_focus="1"
                             string="Exportar PDF" 
                             context="{'xls_export':1}"
                             icon="fa-print"
-                            class="oe_highlight"/> -->
+                            class="oe_highlight"/>
                         or
                         <button string="Cancel" class="oe_link" special="cancel"/>
                     </footer>

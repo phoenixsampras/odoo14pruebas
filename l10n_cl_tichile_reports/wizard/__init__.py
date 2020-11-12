@@ -10,3 +10,5 @@ from . import as_reporte_por_ventas_por_utilidad
 from . import as_reporte_por_lista_de_productos
 from . import as_reporte_salidas_inventario
 from . import as_reporte_ingresos_inventario
+from . import as_invoices_emit_wiz
+from . import as_stock_quantity_history

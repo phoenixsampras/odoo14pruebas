@@ -15,6 +15,8 @@
                     <field name="as_categ_levels"/>
                     <field name="category_ids" widget="many2many_tags"/>
                     <field name="as_consolidado"/>
+                    <field name="as_reporte_existencias"/>
+                     <field name="as_include_qty"/>
                     <!-- <field name="as_fecha_inicial"/> -->
                 </group>
                 <footer>

@@ -8,7 +8,7 @@
     'website': 'http://www.ahorasoft.com',
     'depends': [
         'sale',
-        'base','product', 'stock', 'resource','purchase','report_xlsx'
+        'base','product', 'stock', 'resource','purchase','report_xlsx','stock_landed_costs'
     ],
     'data': [
         # 'security/as_group_view.xml',
@@ -26,13 +26,18 @@
         'wizard/as_reporte_por_lista_de_productos.xml',
         'wizard/as_reporte_ingresos_inventario.xml',
         'wizard/as_reporte_salidas_inventario.xml',
+        'wizard/as_invoices_emit_wiz.xml',
         'report/as_cuentas_por_pagar_pdf.xml',
         'report/as_ventas_por_producto_pdf.xml',
         'report/as_ventas_por_cliente_por_producto_pdf.xml',
         'report/as_cuentas_por_cobrar_pdf.xml',
         'report/as_resumen_por_ventas_pdf.xml',
         'report/as_ventas_por_sucursal_por_dia_pdf.xml',
+        'report/as_reporte_salida_inventario_pdf.xml',
         'views/as_report_format.xml',
+        'views/report/as_report_resumen_gastos.xml',
+        'views/as_product_template.xml',
+        'wizard/as_stock_quantity_history.xml',
     ],
     'installable': True,
     'application': True,

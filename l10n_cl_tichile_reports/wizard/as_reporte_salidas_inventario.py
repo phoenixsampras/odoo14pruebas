@@ -35,7 +35,7 @@ class as_kardex_lista_wiz(models.TransientModel):
         for field in datas['form'].keys():
             if isinstance(datas['form'][field], tuple):
                 datas['form'][field] = datas['form'][field][0]
-        return self.env.ref('l10n_cl_tichile_reports.as_reporte_lista_producto_pdf').report_action(self, data=datas)
+        return self.env.ref('l10n_cl_tichile_reports.as_salidas_inventario_pdf').report_action(self, data=datas)
 
     def export_xls(self):
         context = self._context

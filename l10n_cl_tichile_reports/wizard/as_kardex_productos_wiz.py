@@ -21,6 +21,8 @@ class as_kardex_productos_wiz(models.TransientModel):
     as_consolidado = fields.Boolean(string="Consolidado", default=False)
     as_categ_levels = fields.Integer(string="Niveles de categorias", help=u"Debe ser un entero igual o mayor a 1", default=2)
     as_fecha_inicial = fields.Date('Inicio Movimiento de Inventario', default=_get_default_fecha_inicial)
+    as_reporte_existencias = fields.Boolean(string="Reporte existencias", default=False)
+    as_include_qty = fields.Boolean(string="Incluir saldo cero", default=False)
 
     def export_xls(self):
         context = self._context
