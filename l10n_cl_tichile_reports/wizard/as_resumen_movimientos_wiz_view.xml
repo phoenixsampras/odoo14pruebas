@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_resumen_movimientos_wiz_qweb" model="ir.ui.view">
+            <field name="name">Resumen de Movimiento de Inventario</field>
+            <field name="model">as.resumen.movimientos.wiz</field>
+            <field name="arch" type="xml">
+                <form string="Resumen de Movimiento de Inventario">
+                    <group col="4">
+                        <field name="start_date" required="1"/>
+                        <field name="end_date" required="1"/>
+                    </group>
+                    <footer>
+                        <button name="imprimir_resumen_movimiento_excel" string="Exportar EXCEL" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_resumen_movimientos" model="ir.actions.act_window">
+            <field name="name">Resumen de Movimiento de Inventario</field>
+            <field name="res_model">as.resumen.movimientos.wiz</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_resumen_movimientos_wiz_qweb"/>
+            <field name="target">new</field>
+        </record>
+   
+        
+    <report
+        id="resumen_inventario_xlsx"
+        model="as.kardex.productos.wiz"
+        string="Libro Ventas Report"
+        report_type="xlsx"
+        name="l10n_cl_tichile_reports.resumen_inventario_report_xls.xlsx"
+        file="l10n_cl_tichile_reports.resumen_inventario_report_xls.xlsx"
+        attachment_use="False" />
+
+
+    <menuitem
+        id="as_resumen_inventario"
+        name="Resumen de movimientos de Inventario"
+        action="action_resumen_movimientos"
+        parent="stock.menu_warehouse_report"            
+        sequence="50"/>
+    </data>
+</openerp>

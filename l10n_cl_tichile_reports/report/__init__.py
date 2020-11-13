@@ -15,3 +15,4 @@ from . import as_reporte_ingreso_inventario_xlsx
 from . import as_reporte_salida_inventario_pdf
 from . import as_reporte_existencias
 from . import as_invoices_emit_xlsx
+from . import as_resumen_inventario_xlxs

@@ -44,6 +44,6 @@
             <field name="target">new</field>
         </record>
        
-        <menuitem id="as_menu_ventas_por_product_cliente" name="Informe de ventas por Cliente y Producto" action="as_action_ventas_por_producto_cliente" parent="sale.menu_sale_report"  sequence="3"/>
+        <menuitem id="as_menu_ventas_por_product_cliente" name="Informe de ventas por Cliente y Producto" action="as_action_ventas_por_producto_cliente" parent="sale.menu_sale_report"  sequence="80"/>
     </data>
 </odoo>
