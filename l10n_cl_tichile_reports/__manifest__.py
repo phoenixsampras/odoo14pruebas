@@ -26,7 +26,7 @@
         'wizard/as_reporte_por_lista_de_productos.xml',
         'wizard/as_reporte_ingresos_inventario.xml',
         'wizard/as_reporte_salidas_inventario.xml',
-        'wizard/as_resumen_movimientos_wiz_view.xml',
+        # 'wizard/as_resumen_movimientos_wiz_view.xml',
         'wizard/as_invoices_emit_wiz.xml',
         'report/as_cuentas_por_pagar_pdf.xml',
         'report/as_ventas_por_producto_pdf.xml',
